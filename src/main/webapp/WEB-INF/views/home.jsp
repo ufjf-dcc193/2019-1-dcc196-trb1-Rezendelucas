@@ -10,5 +10,8 @@
 </head>
 <body>
     <h1>Oi eu sou o goku!!!!</h1>
+    <a href="novaTarefa.html">novaTarefa</a><br>
+    <a href="novoMembro.html">novoMembro</a><br>
+    <a href="novaSede.html">novaSede</a><br>
 </body>
 </html>
