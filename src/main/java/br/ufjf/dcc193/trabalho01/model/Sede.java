@@ -7,17 +7,27 @@ public class Sede {
 
     private int id;
     private String nome;
-    private String unidadeFedativa;
+    private String estado;
     private String cidade;
     private String bairro;
     private String telefone;
     private String email;
 
-    public Sede(String nome, int id){
+    public Sede(int id, String nome, String estado, String cidade, String bairro, String telefone, String email){
+        this.nome = nome;
+        this.id = id;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.bairro = bairro;
+        this.telefone = telefone;
+        this.email = email;
+    }
+/*
+    public Sede(int id, String nome){
         this.nome = nome;
         this.id = id;
     }
-
+*/
     /**
      * @return the id
      */
@@ -33,10 +43,10 @@ public class Sede {
     }
 
     /**
-     * @return the unidadeFedativa
+     * @return the estado
      */
-    public String getUnidadeFedativa() {
-        return unidadeFedativa;
+    public String getEstado() {
+        return estado;
     }
 
     /**
@@ -75,10 +85,10 @@ public class Sede {
     }
 
     /**
-     * @param unidadeFedativa the unidadeFedativa to set
+     * @param estado the estado to set
      */
-    public void setUnidadeFedativa(String unidadeFedativa) {
-        this.unidadeFedativa = unidadeFedativa;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     /**
