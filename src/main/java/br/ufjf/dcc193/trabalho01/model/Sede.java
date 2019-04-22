@@ -13,6 +13,11 @@ public class Sede {
     private String telefone;
     private String email;
 
+    public Sede(String nome, int id){
+        this.nome = nome;
+        this.id = id;
+    }
+
     /**
      * @return the id
      */

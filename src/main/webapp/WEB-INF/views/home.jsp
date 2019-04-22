@@ -1,3 +1,6 @@
+<%@page pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +12,14 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <h1>Oi eu sou o goku!!!!</h1>
+
+    <ol>
+        <c:forEach var="sede" items="${sedes}">
+            <li value="${sede.id}">${sede.nome}</li>   
+        </c:forEach>
+    </ol>
+
+    <h1>Menu Inicial</h1>
     <a href="novaTarefa.html">novaTarefa</a><br>
     <a href="novoMembro.html">novoMembro</a><br>
     <a href="novaSede.html">novaSede</a><br>
