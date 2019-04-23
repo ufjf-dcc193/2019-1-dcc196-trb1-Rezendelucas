@@ -55,6 +55,13 @@ public class Membro {
     }
 
     /**
+     * @param id the id to set
+    */
+    public void setId(int id) {
+        this.id = id;
+}
+
+    /**
      * @param nome the nome to set
      */
     public void setNome(String nome) {

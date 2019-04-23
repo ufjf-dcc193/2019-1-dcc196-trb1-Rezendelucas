@@ -12,30 +12,30 @@
     <script src="main.js"></script>
 </head>
 <body>
-   <li>nome: ${sede.nome}</li>
-   <li>unidadeFedativa: ${sede.estado}</li>
-   <li>cidade: ${sede.cidade}</li>
-   <li>bairro: ${sede.bairro}</li>
-   <li>telefone: ${sede.telefone}</li>
-   <li>email: ${sede.email}</li>
+   <li>Nome: ${sede.nome}</li>
+   <li>UnidadeFedativa: ${sede.estado}</li>
+   <li>Cidade: ${sede.cidade}</li>
+   <li>Bairro: ${sede.bairro}</li>
+   <li>Telefone: ${sede.telefone}</li>
+   <li>Email: ${sede.email}</li>
    <input type="button" onclick="location.href='index.html'" value="Ver Sedes"/><br>
    
 
    <h1>Membros:</h1>
    <ol>
        <c:forEach var="membro" items="${membros}">
-           <li value="${membro.id}"><a href="verMembro.html">${sede.nome}</a></li>   
+           <li value="${membro.id}"><a href="verMembro.html?idMembro=${membro.id}&idSede=${sede.id}">${membro.nome}</a></li>   
        </c:forEach>
    </ol>
-   <input type="button" onclick="location.href='novoMembro.html'" value="Add Membros"/> 
+   <input type="button" onclick="location.href='novoMembro.html?id=${sede.id}'" value="Add Membros"/> 
 
    <h1>Tarefas:</h1>
    <ol>
        <c:forEach var="tarefa" items="${tarefas}">
-           <li value="${tarefa.id}"><a href="verTarefa.html">${sede.nome}</a></li>   
+           <li value="${tarefa.id}"><a href="verTarefa.html?idTarefa=${tarefa.id}&idSede=${sede.id}">${tarefa.titulo}</a></li>   
        </c:forEach>
    </ol>
-   <input type="button" onclick="location.href='novaTarefa.html'" value="Add Tarefas"/> 
+   <input type="button" onclick="location.href='novaTarefa.html?idSede=${sede.id}'" value="Add Tarefas"/> 
 
 </body>
 </html>

@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.ufjf.dcc193.trabalho01.model.Atividade;
+import br.ufjf.dcc193.trabalho01.model.Membro;
 import br.ufjf.dcc193.trabalho01.model.Sede;
 
 
@@ -16,67 +19,132 @@ import br.ufjf.dcc193.trabalho01.model.Sede;
 @Controller
 public class HomeController {
 
-    ModelAndView mvHome = new ModelAndView();
     List<Sede> sedes = new ArrayList<Sede>();
+    List<Membro> membros = new ArrayList<Membro>();
+    List<Atividade> tarefas = new ArrayList<Atividade>();
 
     @RequestMapping({"","index.html"})
     public ModelAndView home(){
-        mvHome.setViewName("home");
-        
-       // Sede sede1 = new Sede(1,"Microsoft");
-       // sedes.add(sede1);
-       // Sede sede2 = new Sede(2,"Apple");
-       // sedes.add(sede2);
-       // Sede sede3 = new Sede(3,"Podrão do Juca");
-       // sedes.add(sede3);
-       // mv.addObject("sedes", sedes);
-        return mvHome;
+        ModelAndView mvHome_Sede = new ModelAndView();
+        mvHome_Sede.setViewName("home");
+        mvHome_Sede.addObject("sedes", sedes);
+        return mvHome_Sede;
     }
+
+
+
+////////SEDE
 
     @RequestMapping("novaSede.html")
     public String companyForm(){
         return "companyForm";
     }
-/*
-    @RequestMapping("verSede.html")
-    public String sede(){
-        return "viewSede";
-    }
 
     @RequestMapping("verSede.html")
-    public ModelAndView sede(Integer id, String nome, String estado, String cidade, String bairro, String telefone, String email){
+    public ModelAndView sede(@RequestParam int idSede){
         ModelAndView mv = new ModelAndView();
+        //define a view a ser carregada
         mv.setViewName("viewSede");
-        mv.addObject("id", id);
-        mv.addObject("nome", nome);
-        mv.addObject("estado", estado);
-        mv.addObject("cidade", cidade);
-        mv.addObject("bairro", bairro);
-        mv.addObject("telefone", telefone);
-        mv.addObject("email", email);
+
+        for (Sede var : sedes) {
+            if(var.getId() == idSede ){
+               mv.addObject("sede", var);
+               break;
+           }
+        }
+        mv.addObject("tarefas", tarefas);
+        mv.addObject("membros", membros);
         return mv;
     }
-*/
-    @RequestMapping("verSede.html")
+
+    @RequestMapping("visualizaSede.html")
     public ModelAndView sede(Sede S){
         ModelAndView mv = new ModelAndView();
+        //define a view a ser carregada
         mv.setViewName("viewSede");
-        mv.addObject("sede", S);
+           
         sedes.add(S);
-        mvHome.addObject("sedes", sedes);
+        mv.addObject("sede", S);    
+        
         return mv;
     }
 
+
+
+//////////MEMBRO
+
     @RequestMapping("novoMembro.html")
-    public String memberForm(){
-        return "memberForm";
+    public ModelAndView memberForm(@RequestParam int id){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("memberForm");
+        mv.addObject("idSede", id);
+        return mv;
+    }
+
+    @RequestMapping("verMembro.html")
+    public ModelAndView membro(@RequestParam int idMembro,@RequestParam int idSede){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("viewMember");
+
+        for (Membro var : membros) {
+            if(var.getId() == idMembro){
+               mv.addObject("membro", var);
+               mv.addObject("idSede", idSede);
+               break;
+           }
+         }    
+        return mv;
+    }
+
+    @RequestMapping("visualizaMembro.html")
+    public ModelAndView membro(Membro M, @RequestParam int idSede){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("viewMember");
+
+        membros.add(M);
+        mv.addObject("membro", M);    
+        mv.addObject("idSede", idSede);
+
+        return mv;
+    }
+    
+ 
+ ////////TAREFA   
+
+    @RequestMapping("novaTarefa.html")
+    public ModelAndView taskForm(@RequestParam int idSede){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("taskForm");
+        mv.addObject("idSede", idSede);
+        return mv;
     }
 
 
-    
-    @RequestMapping("novaTarefa.html")
-    public String taskForm(){
-        return "taskForm";
+    @RequestMapping("verTarefa.html")
+    public ModelAndView taskForm(@RequestParam int idTarefa,@RequestParam int idSede){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("viewTask");
+
+        for (Atividade var : tarefas) {
+            if(var.getId() == idTarefa){
+               mv.addObject("tarefa", var);
+               mv.addObject("idSede", idSede);
+               break;
+           }
+         }    
+        return mv;
+    }
+   
+    @RequestMapping("visualizaTarefa.html")
+    public ModelAndView taskForm(Atividade A, @RequestParam int idSede){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("viewTask");
+
+        tarefas.add(A);
+        mv.addObject("tarefa", A);    
+        mv.addObject("idSede", idSede);
+
+        return mv;
     }
     
 }

@@ -15,13 +15,14 @@
     <h1>Menu Inicial: Lista de Sedes da Companhias</h1>
     <ol>
         <c:forEach var="sede" items="${sedes}">
-            <li value="${sede.id}"><a href="verSede.html">${sede.nome}</a></li>   
+            <li value="${sede.id}"><a href="verSede.html?idSede=${sede.id}">${sede.nome}</a></li>   
         </c:forEach>
     </ol>
     <input type="button" onclick="location.href='novaSede.html'" value="Nova Sede"/><br> 
-
-    ----------------------- me ignora -----------------------
-    <h1>Menu Inicial</h1>
+    <br> 
+    <br> 
+    <br> 
+    ----------------------- me ignora -----------------------</br>
     <a href="novaTarefa.html">novaTarefa</a><br>
     <a href="novoMembro.html">novoMembro</a><br>
     <a href="novaSede.html">novaSede</a><br>

@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>Formulario: Nova Sede</h1>
-    <form action="verSede.html" method="POST">
+    <form action="visualizaSede.html" method="POST">
         <label>Id: <input type="number" name="id"/></label><br>
         <label>Nome: <input type="text" name="nome"/></label><br>
         <label>Estado Ferativo: <input type="text" name="estado"/></label><br>

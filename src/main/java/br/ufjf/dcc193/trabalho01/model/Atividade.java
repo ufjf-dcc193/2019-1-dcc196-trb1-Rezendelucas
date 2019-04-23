@@ -5,20 +5,13 @@ package br.ufjf.dcc193.trabalho01.model;
  */
 public class Atividade {
 
-public enum Categoria{
-    ASSISTENCIAL,
-    JURIDICO,
-    FINANCEIRA,
-    EXECULTIVO
-}
-
     private int id;
     private String titulo;
     private String descricao;
     private String inicio;
     private String fim;
     private String total;
-    private Categoria categoria; 
+    private String categoria; 
 
     /**
      * @return the id
@@ -65,8 +58,15 @@ public enum Categoria{
     /**
      * @return the categoria
      */
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -107,7 +107,7 @@ public enum Categoria{
     /**
      * @param categoria the categoria to set
      */
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 }
