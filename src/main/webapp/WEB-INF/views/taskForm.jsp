@@ -11,7 +11,6 @@
 <body>
     <h1>Formulario: Nova Tarefa</h1>
     <form action="visualizaTarefa.html?idSede=${idSede}" method="POST">
-        <label>Id: <input type="number" name="id"/></label><br>
         <label>titulo: <input type="text" name="titulo"/></label><br>
         <label>Descricao: <input type="text" name="descricao"/></label><br>
         <label>Inicio: <input type="text" name="inicio"/></label><br>

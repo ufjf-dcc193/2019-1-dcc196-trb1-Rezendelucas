@@ -3,14 +3,22 @@ package br.ufjf.dcc193.trabalho01.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.ufjf.dcc193.trabalho01.AtividadeRepository;
+import br.ufjf.dcc193.trabalho01.MainApplication;
+import br.ufjf.dcc193.trabalho01.MembroRepository;
+import br.ufjf.dcc193.trabalho01.SedeRepository;
 import br.ufjf.dcc193.trabalho01.model.Atividade;
 import br.ufjf.dcc193.trabalho01.model.Membro;
 import br.ufjf.dcc193.trabalho01.model.Sede;
+import net.bytebuddy.dynamic.loading.ClassLoadingStrategy.Configurable;
 
 
 /**
@@ -19,14 +27,20 @@ import br.ufjf.dcc193.trabalho01.model.Sede;
 @Controller
 public class HomeController {
 
-    List<Sede> sedes = new ArrayList<Sede>();
-    List<Membro> membros = new ArrayList<Membro>();
-    List<Atividade> tarefas = new ArrayList<Atividade>();
+    @Autowired
+    SedeRepository Srep;
+    
+
+    List<Sede> sedes;
+    List<Membro> membros;
+    List<Atividade> tarefas;
 
     @RequestMapping({"","index.html"})
     public ModelAndView home(){
         ModelAndView mvHome_Sede = new ModelAndView();
+
         mvHome_Sede.setViewName("home");
+        sedes = Srep.findAll();
         mvHome_Sede.addObject("sedes", sedes);
         return mvHome_Sede;
     }
@@ -46,9 +60,12 @@ public class HomeController {
         //define a view a ser carregada
         mv.setViewName("viewSede");
 
+        sedes = Srep.findAll();
         for (Sede var : sedes) {
             if(var.getId() == idSede ){
                mv.addObject("sede", var);
+               membros = var.getMembro();
+               tarefas = var.getAtividade();
                break;
            }
         }
@@ -63,7 +80,7 @@ public class HomeController {
         //define a view a ser carregada
         mv.setViewName("viewSede");
            
-        sedes.add(S);
+        Srep.save(S);
         mv.addObject("sede", S);    
         
         return mv;
@@ -101,7 +118,14 @@ public class HomeController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("viewMember");
 
-        membros.add(M);
+        sedes = Srep.findAll();
+        for(Sede S : sedes){
+            if(S.getId() == idSede){
+                S.setMembro(M);
+                Srep.save(S);
+            }
+        }
+
         mv.addObject("membro", M);    
         mv.addObject("idSede", idSede);
 
@@ -140,7 +164,14 @@ public class HomeController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("viewTask");
 
-        tarefas.add(A);
+        sedes = Srep.findAll();
+        for(Sede S : sedes){
+            if(S.getId() == idSede){
+                S.setAtividade(A);
+                Srep.save(S);
+            }
+        }
+
         mv.addObject("tarefa", A);    
         mv.addObject("idSede", idSede);
 

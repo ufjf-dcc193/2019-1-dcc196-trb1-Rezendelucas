@@ -1,10 +1,25 @@
 package br.ufjf.dcc193.trabalho01.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 /**
  * Sede
  */
+
+ @Entity
 public class Sede {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String nome;
     private String estado;
@@ -12,6 +27,14 @@ public class Sede {
     private String bairro;
     private String telefone;
     private String email;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Membro> membros;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Atividade> atividades;
+
+    public Sede(){
+        
+    }
 
     public Sede(int id, String nome, String estado, String cidade, String bairro, String telefone, String email){
         this.nome = nome;
@@ -22,12 +45,23 @@ public class Sede {
         this.telefone = telefone;
         this.email = email;
     }
-/*
-    public Sede(int id, String nome){
-        this.nome = nome;
-        this.id = id;
+
+    public List<Membro> getMembro(){
+        return membros;
     }
-*/
+
+    public List<Atividade> getAtividade(){
+        return atividades;
+    }
+
+    public void setMembro(Membro m){
+        membros.add(m);
+    }
+
+    public void setAtividade(Atividade a){
+        atividades.add(a);
+    }
+
     /**
      * @return the id
      */

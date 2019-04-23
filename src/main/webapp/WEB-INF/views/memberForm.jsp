@@ -11,7 +11,6 @@
 <body>
     <h1>Formulario: Novo Membro</h1>
     <form action="visualizaMembro.html?idSede=${idSede}" method="POST">
-        <label>Id: <input type="number" name="id"/></label><br>
         <label>Nome: <input type="text" name="nome"/></label><br>
         <label>Funcao: <input type="text" name="funcao"/></label><br>
         <label>Email: <input type="text" name="email"/></label><br>
