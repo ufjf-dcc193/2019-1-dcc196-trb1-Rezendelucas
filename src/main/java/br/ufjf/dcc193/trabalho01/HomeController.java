@@ -58,6 +58,15 @@ public class HomeController {
                mv.addObject("sede", var);
                membros = var.getMembro();
                tarefas = var.getAtividade();
+
+               int somaAS = SomaAS(var);
+               int somaJU = SomaJU(var);
+               int somaFI = SomaFI(var);
+               int somaEX = SomaEX(var);
+               mv.addObject("somaAS",somaAS);
+               mv.addObject("somaJU",somaJU);
+               mv.addObject("somaFI",somaFI);
+               mv.addObject("somaEX",somaEX);
                break;
            }
         }
@@ -394,6 +403,56 @@ public class HomeController {
         mv.addObject("tarefas", tarefas);
         return mv;
     }
+
+
+
+    //---------------------------------------funçoes auxiliares--------------
  
-    
+   
+
+private int SomaEX(Sede var) {
+        int count = 0;
+        List<Atividade> ativ = var.getAtividade();
+        for (Atividade A : ativ) {
+            if(A.getCategoria().equals("EXECULTIVO")){
+               count = count  +  Integer.parseInt(A.getTotal());
+               
+            }
+        }
+        return count;
+    }
+
+    private int SomaFI(Sede var) {
+        int count = 0;
+        List<Atividade> ativ = var.getAtividade();
+        for (Atividade A : ativ) {
+            if(A.getCategoria().equals("FINANCEIRA")){
+               count = count +  Integer.parseInt(A.getTotal());
+            }
+        }
+        return count;
+    }
+
+    private int SomaJU(Sede var) {
+        int count = 0;
+        List<Atividade> ativ = var.getAtividade();
+        for (Atividade A : ativ) {
+            if(A.getCategoria().equals("JURIDICO")){
+               count = count +  Integer.parseInt(A.getTotal());
+            }
+        }
+        return count;
+    }
+
+    private int SomaAS(Sede var) {
+        int count = 0;
+        List<Atividade> ativ = var.getAtividade();
+        for (Atividade A : ativ) {
+            if(A.getCategoria().equals("ASSISTENCIAL")){
+               count = count +  Integer.parseInt(A.getTotal());
+            }
+        }
+        return count;
+    }
+
 }
