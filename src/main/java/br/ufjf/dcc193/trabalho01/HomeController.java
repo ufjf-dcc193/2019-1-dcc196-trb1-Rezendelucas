@@ -30,12 +30,12 @@ public class HomeController {
 
     @RequestMapping({"","index.html"})
     public ModelAndView home(){
-        ModelAndView mvHome_Sede = new ModelAndView();
-        mvHome_Sede.setViewName("home");
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("home");
        
         sedes = Srep.findAll();
-        mvHome_Sede.addObject("sedes", sedes);
-        return mvHome_Sede;
+        mv.addObject("sedes", sedes);
+        return mv;
     }
 
     

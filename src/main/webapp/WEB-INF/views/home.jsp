@@ -20,12 +20,6 @@
     </ol>
     <input type="button" onclick="location.href='novaSede.html'" value="Nova Sede"/><br> 
     <br> 
-    <br> 
-    <br> 
-    ----------------------- me ignora -----------------------</br>
-    <br>
-    <a href="novaTarefa.html">novaTarefa</a><br>
-    <a href="novoMembro.html">novoMembro</a><br>
-    <a href="novaSede.html">novaSede</a><br>
+    
 </body>
 </html>

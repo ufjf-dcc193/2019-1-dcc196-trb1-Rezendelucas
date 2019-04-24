@@ -39,6 +39,18 @@
        </c:forEach>
    </ol>
    <input type="button" onclick="location.href='novaTarefa.html?idSede=${sede.id}'" value="Add Tarefas"/> 
+   
+   <h1>Soma das Categorias</h1>
+   <h3>Assistencial:</h3>
+   <li></li>
+   <h3>Jurídica:</h3>
+   <li></li>
+   <h3>financeira:</h3>
+   <li></li>
+   <h3>executiva:</h3>
+   <li></li>
+
+
 
 </body>
 </html>
