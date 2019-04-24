@@ -20,6 +20,18 @@ public class Membro {
     private String entrada;
     private String saida;
 
+    public Membro(){
+
+    }
+
+    public Membro(int id,String nome, String funcao, String email, String entrada, String saida){
+        this.id = id;
+        this.nome = nome;
+        this.funcao = funcao;
+        this.email = email;
+        this.entrada = entrada;
+        this.saida = saida;
+    }
     /**
      * @return the id
      */

@@ -15,7 +15,7 @@
     <h1>Menu Inicial: Lista de Sedes da Companhias</h1>
     <ol>
         <c:forEach var="sede" items="${sedes}">
-            <li value="${sede.id}"><a href="verSede.html?idSede=${sede.id}">${sede.nome}</a> - <a href="deletar.html?idSede=${sede.id}">Deletar</a> - <a href="editar.html?idSede=${sede.id}">Editar</a></li>   
+            <li value="${sede.id}"><a href="verSede.html?idSede=${sede.id}">${sede.nome}</a> - <a href="deletarSede.html?idSede=${sede.id}">Deletar</a> - <a href="editarSede.html?idSede=${sede.id}">Editar</a></li>   
         </c:forEach>
     </ol>
     <input type="button" onclick="location.href='novaSede.html'" value="Nova Sede"/><br> 

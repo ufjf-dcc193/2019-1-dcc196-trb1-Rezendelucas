@@ -24,10 +24,13 @@
    <h1>Membros:</h1>
    <ol>
        <c:forEach var="membro" items="${membros}">
-           <li value="${membro.id}"><a href="verMembro.html?idMembro=${membro.id}&idSede=${sede.id}">${membro.nome}</a></li>   
+           <li value="${membro.id}"><a href="verMembro.html?idMembro=${membro.id}&idSede=${sede.id}">${membro.nome}</a> - <a href="deletarMembro.html?idMembro=${membro.id}&idSede=${sede.id}">Deletar</a> - <a href="editarMembro.html?idMembro=${membro.id}&idSede=${sede.id}">Editar</a></li>   
        </c:forEach>
    </ol>
-   <input type="button" onclick="location.href='novoMembro.html?id=${sede.id}'" value="Add Membros"/> 
+   <input type="button" onclick="location.href='novoMembro.html?idSede=${sede.id}'" value="Add Membros"/> 
+
+<br>
+--------------------------------------------------------------------------------------------------
 
    <h1>Tarefas:</h1>
    <ol>

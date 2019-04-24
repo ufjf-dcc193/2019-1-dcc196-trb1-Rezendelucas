@@ -52,8 +52,16 @@ public class Sede {
         return atividades;
     }
 
-    public void setMembros(Membro m){
+    public void setMembro(Membro m){
         membros.add(m);
+    }
+
+    public void setMembros(List<Membro> m){
+        this.membros = m;
+    }
+
+    public void clearLista(){
+        membros.clear();
     }
 
     public void setAtividades(Atividade a){
