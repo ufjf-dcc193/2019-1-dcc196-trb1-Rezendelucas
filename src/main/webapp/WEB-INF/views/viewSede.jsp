@@ -35,7 +35,7 @@
    <h1>Tarefas:</h1>
    <ol>
        <c:forEach var="tarefa" items="${tarefas}">
-           <li value="${tarefa.id}"><a href="verTarefa.html?idTarefa=${tarefa.id}&idSede=${sede.id}">${tarefa.titulo}</a></li>   
+           <li value="${tarefa.id}"><a href="verTarefa.html?idTarefa=${tarefa.id}&idSede=${sede.id}">${tarefa.titulo}</a> - <a href="deletarTarefa.html?idTarefa=${tarefa.id}&idSede=${sede.id}">Deletar</a> - <a href="editarTarefa.html?idTarefa=${tarefa.id}&idSede=${sede.id}">Editar</a></li>   
        </c:forEach>
    </ol>
    <input type="button" onclick="location.href='novaTarefa.html?idSede=${sede.id}'" value="Add Tarefas"/> 

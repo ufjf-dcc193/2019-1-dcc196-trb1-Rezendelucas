@@ -64,10 +64,13 @@ public class Sede {
         membros.clear();
     }
 
-    public void setAtividades(Atividade a){
-        atividades.add(a);
+    public void setAtividade(Atividade a){
+       this.atividades.add(a);
     }
 
+    public void setAtividades(List<Atividade> a){
+        this.atividades = a;
+    }
     /**
      * @return the id
      */

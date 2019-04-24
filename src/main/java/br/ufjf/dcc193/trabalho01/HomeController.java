@@ -298,7 +298,7 @@ public class HomeController {
         sedes = Srep.findAll();
         for(Sede S : sedes){
             if(S.getId() == idSede){
-                S.setAtividades(A);
+                S.setAtividade(A);
                 Srep.save(S);
             }
         }
@@ -308,5 +308,92 @@ public class HomeController {
 
         return mv;
     }
+
+    @RequestMapping("deletarTarefa.html")
+    public ModelAndView deletarTarefa(@RequestParam int idTarefa, @RequestParam int idSede){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("viewSede");
+
+        sedes = Srep.findAll();
+        for(Sede S : sedes){
+            if(S.getId() == idSede){
+                List<Atividade> sedeTarefas = S.getAtividade();
+                for(Atividade A : sedeTarefas){
+                    if(A.getId() == idTarefa){
+                      sedeTarefas.remove(A);
+                      S.setAtividades(sedeTarefas);    
+                      Srep.save(S);
+                      tarefas = S.getAtividade();
+                      mv.addObject("sede", S);
+                      break;
+                    }
+                }
+              break;  
+            }
+        }
+        
+        sedes = Srep.findAll();
+        mv.addObject("membros", membros);
+        mv.addObject("tarefas", tarefas);
+        return mv;
+    }
+
+    @RequestMapping("editarTarefa.html")
+    public ModelAndView editarTarefa(@RequestParam int idTarefa,@RequestParam int idSede){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("editTarefa");
+
+        sedes = Srep.findAll();
+        
+        for(Sede S : sedes){
+            if(S.getId() == idSede){
+                List<Atividade> sedeTarefas = S.getAtividade();
+                for(Atividade A : sedeTarefas){
+                    if(A.getId() == idTarefa){
+                        mv.addObject("tarefa", A);
+                        mv.addObject("sede", S);
+                    }
+                }
+            }
+        }
+        sedes = Srep.findAll();
+        return mv;
+    }
+
+    @RequestMapping("tarefaEditada.html")
+    public ModelAndView tarefaEditada(Atividade nT, @RequestParam int idTarefa, @RequestParam int idSede){
+        ModelAndView mv = new ModelAndView();
+        //define a view a ser carregada
+        mv.setViewName("viewSede");
+        
+        sedes = Srep.findAll();
+        for(Sede S : sedes){
+            if(S.getId() == idSede){
+                List<Atividade> sedeTarefas = S.getAtividade();
+                for(Atividade A : sedeTarefas){
+                    if(A.getId() == idTarefa){
+                        A.setTitulo(nT.getTitulo());
+                        A.setDescricao(nT.getDescricao());
+                        A.setInicio(nT.getInicio());
+                        A.setFim(nT.getFim());
+                        A.setTotal(nT.getTotal());
+                        A.setCategoria(nT.getCategoria());
+                        Atividade temp = A;
+                        sedeTarefas.remove(A);
+                        sedeTarefas.add(temp);
+                        tarefas = sedeTarefas;
+                        S.setAtividades(sedeTarefas);
+                        Srep.save(S);
+                        mv.addObject("sede", S);
+                        break;
+                    }
+                }
+            }
+        } 
+        mv.addObject("membros", membros);
+        mv.addObject("tarefas", tarefas);
+        return mv;
+    }
+ 
     
 }

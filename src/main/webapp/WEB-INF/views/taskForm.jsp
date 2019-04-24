@@ -15,7 +15,7 @@
         <label>Descricao: <input type="text" name="descricao"/></label><br>
         <label>Inicio: <input type="text" name="inicio"/></label><br>
         <label>Fim: <input type="text" name="fim"/></label><br>
-        <label>Total: <input type="text" name="categoria"/></label><br>
+        <label>Total: <input type="text" name="total"/></label><br>
         <select id="cbCategoria" name="categoria">  
             <option value="">Select...</option>
             <option value="ASSISTENCIAL">ASSISTENCIAL</option>
