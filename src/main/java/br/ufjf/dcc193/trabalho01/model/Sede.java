@@ -4,12 +4,10 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  * Sede
@@ -54,11 +52,11 @@ public class Sede {
         return atividades;
     }
 
-    public void setMembro(Membro m){
+    public void setMembros(Membro m){
         membros.add(m);
     }
 
-    public void setAtividade(Atividade a){
+    public void setAtividades(Atividade a){
         atividades.add(a);
     }
 
@@ -111,6 +109,12 @@ public class Sede {
         return email;
     }
 
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
     /**
      * @param nome the nome to set
      */

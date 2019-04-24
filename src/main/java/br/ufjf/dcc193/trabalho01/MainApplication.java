@@ -9,7 +9,7 @@ public class MainApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(MainApplication.class, args); 
-		SedeRepository srep = ctx.getBean(SedeRepository.class); 
+		SedeRepository srep = ctx.getBean(SedeRepository.class);  
 
 	}
 

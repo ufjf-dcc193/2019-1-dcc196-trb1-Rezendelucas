@@ -1,24 +1,17 @@
 package br.ufjf.dcc193.trabalho01.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.ufjf.dcc193.trabalho01.AtividadeRepository;
-import br.ufjf.dcc193.trabalho01.MainApplication;
-import br.ufjf.dcc193.trabalho01.MembroRepository;
 import br.ufjf.dcc193.trabalho01.SedeRepository;
 import br.ufjf.dcc193.trabalho01.model.Atividade;
 import br.ufjf.dcc193.trabalho01.model.Membro;
 import br.ufjf.dcc193.trabalho01.model.Sede;
-import net.bytebuddy.dynamic.loading.ClassLoadingStrategy.Configurable;
 
 
 /**
@@ -43,6 +36,59 @@ public class HomeController {
         sedes = Srep.findAll();
         mvHome_Sede.addObject("sedes", sedes);
         return mvHome_Sede;
+    }
+
+    @RequestMapping("deletar.html")
+    public ModelAndView home(@RequestParam int idSede){
+        ModelAndView mvHome_Sede = new ModelAndView();
+        mvHome_Sede.setViewName("home");
+
+        for(Sede S : sedes){
+            if(S.getId() == idSede){
+                Srep.delete(S);
+            }
+        }
+
+
+        sedes = Srep.findAll();
+        mvHome_Sede.addObject("sedes", sedes);
+        return mvHome_Sede;
+    }
+
+    @RequestMapping("editar.html")
+    public ModelAndView editarSede(@RequestParam int idSede){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("editSede");
+
+        sedes = Srep.findAll();
+        for(Sede S : sedes){
+            if(S.getId() == idSede){
+                mv.addObject("sede", S);
+            }
+        }
+        return mv;
+    }
+
+    @RequestMapping("sedeEditada.html")
+    public ModelAndView sede(Sede nS, @RequestParam int idSede){
+        ModelAndView mv = new ModelAndView();
+        //define a view a ser carregada
+        mv.setViewName("viewSede");
+           
+        for(Sede S : sedes){
+            if(S.getId() == idSede){
+                S.setNome(nS.getNome());
+                S.setEstado(nS.getEstado());
+                S.setCidade(nS.getCidade());
+                S.setBairro(nS.getBairro());
+                S.setTelefone(nS.getTelefone());
+                S.setEmail(nS.getEmail());
+                Srep.save(S);
+                mv.addObject("sede", S);
+                break;
+            }
+        } 
+        return mv;
     }
 
 
@@ -121,7 +167,7 @@ public class HomeController {
         sedes = Srep.findAll();
         for(Sede S : sedes){
             if(S.getId() == idSede){
-                S.setMembro(M);
+                S.setMembros(M);
                 Srep.save(S);
             }
         }
@@ -167,7 +213,7 @@ public class HomeController {
         sedes = Srep.findAll();
         for(Sede S : sedes){
             if(S.getId() == idSede){
-                S.setAtividade(A);
+                S.setAtividades(A);
                 Srep.save(S);
             }
         }

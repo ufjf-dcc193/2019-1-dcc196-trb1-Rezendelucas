@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="main.js"></script>
@@ -15,7 +15,7 @@
     <h1>Menu Inicial: Lista de Sedes da Companhias</h1>
     <ol>
         <c:forEach var="sede" items="${sedes}">
-            <li value="${sede.id}"><a href="verSede.html?idSede=${sede.id}">${sede.nome}</a></li>   
+            <li value="${sede.id}"><a href="verSede.html?idSede=${sede.id}">${sede.nome}</a> - <a href="deletar.html?idSede=${sede.id}">Deletar</a> - <a href="editar.html?idSede=${sede.id}">Editar</a></li>   
         </c:forEach>
     </ol>
     <input type="button" onclick="location.href='novaSede.html'" value="Nova Sede"/><br> 
@@ -23,6 +23,7 @@
     <br> 
     <br> 
     ----------------------- me ignora -----------------------</br>
+    <br>
     <a href="novaTarefa.html">novaTarefa</a><br>
     <a href="novoMembro.html">novoMembro</a><br>
     <a href="novaSede.html">novaSede</a><br>
